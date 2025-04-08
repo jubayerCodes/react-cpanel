@@ -20,9 +20,10 @@ const Home = () => {
     const [posts, setPosts] = useState([])
 
     useEffect(()=>{
-        fetch('https://jsonplaceholder.typicode.com/posts')
+        fetch('http://localhost:3000/api/v1/post')
             .then((response) => response.json())
-            .then((json) => setPosts(json));
+            .then((json) => setPosts(json?.data))
+            .catch(error => console.log(error))
     }, [])
 
     useEffect(()=>{
@@ -65,13 +66,13 @@ const Home = () => {
                 {
                     posts?.slice(0, 10)?.map((post, idx) =>(
                         <Card style={{ width: '18rem' }} key={idx}>
-                            <Card.Img variant="top" src="holder.js/100px180" />
+                            <Card.Img variant="top" src={`http://localhost:3000/uploads/${post?.postImg}`} />
                             <Card.Body>
                             <Card.Title>{post?.title}</Card.Title>
                             <Card.Text>
                                 {post?.body}
                             </Card.Text>
-                                <Link to={`/posts/${post?.id}`}>
+                                <Link to={`/posts/${post?._id}`}>
                                     <Button variant="primary">Details</Button>
                                 </Link>
                             </Card.Body>

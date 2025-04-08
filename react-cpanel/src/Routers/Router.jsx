@@ -19,7 +19,7 @@ const router = createBrowserRouter([
         path: "/posts/:id",
         Component: Post,  // Use Component here
         loader: async ({ params }) => {
-          const response = await fetch(`https://jsonplaceholder.typicode.com/posts/${params.id}`);
+          const response = await fetch(`http://localhost:3000/api/v1/post/${params.id}`);
           return response.json();  // Return the post data
         }
       }
