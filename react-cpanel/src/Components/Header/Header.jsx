@@ -22,7 +22,7 @@ const Header = () => {
     formData.append("body", postDesc);
     formData.append("postImg", selectedFile);
   
-    const res = await fetch("http://localhost:3000/api/v1/post", {
+    const res = await fetch("/api/v1/post", {
       method: "POST",
       body: formData, // Do NOT set Content-Type manually
     });

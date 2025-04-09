@@ -16,7 +16,7 @@ const Post = () => {
             </Helmet>
             <div className='container mt-5'>
                     <Card style={{ width: '100%' }}>
-                        <Card.Img variant="top" src={`http://localhost:3000/uploads/${post?.postImg}`} />
+                        <Card.Img variant="top" src={`/uploads/${post?.postImg}`} />
                         <Card.Body>
                         <Card.Title>{post?.title}</Card.Title>
                         <Card.Text>

@@ -20,7 +20,7 @@ const Home = () => {
     const [posts, setPosts] = useState([])
 
     useEffect(()=>{
-        fetch('http://localhost:3000/api/v1/post')
+        fetch('/api/v1/post')
             .then((response) => response.json())
             .then((json) => setPosts(json?.data))
             .catch(error => console.log(error))
@@ -66,7 +66,7 @@ const Home = () => {
                 {
                     posts?.slice(0, 10)?.map((post, idx) =>(
                         <Card style={{ width: '18rem' }} key={idx}>
-                            <Card.Img variant="top" src={`http://localhost:3000/uploads/${post?.postImg}`} />
+                            <Card.Img variant="top" src={`/uploads/${post?.postImg}`} />
                             <Card.Body>
                             <Card.Title>{post?.title}</Card.Title>
                             <Card.Text>

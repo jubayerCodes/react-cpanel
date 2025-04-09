@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const app = new express()
 const cors = require("cors");
 const path = require('path');
+import { fileURLToPath } from 'url';
 
 const router = require("./src/routes/api")
 
@@ -40,5 +41,18 @@ app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 app.get('/', (req, res) => {
     res.send('Hello World!')
   })
+
+
+// Resolve __dirname in ES modules
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+// Serve static files from Vite build
+app.use(express.static(path.join(__dirname, '../client/dist')));
+
+// Fallback to index.html for SPA routing
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '../client/dist/index.html'));
+  });
   
 module.exports = app;
